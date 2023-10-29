@@ -1,6 +1,6 @@
 function Home() {
     return (
-        <h1>Welcome to Restaurant Dev branch</h1>
+        <h1>Welcome to Restaurant Dev branch Sam version</h1>
     )
 }
 
