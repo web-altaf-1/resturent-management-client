@@ -16,15 +16,16 @@ import {
 import "./index.css";
 function Personal() {
     const profiles = useSelector((state) => state.profilesReducer.profiles);
+    const dispatch = useDispatch();
+    dispatch(setProfile(profiles[0]));
     const profile = useSelector((state) => state.profilesReducer.profile);
     const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const friendFind = (id) => {
         return profiles.find((user) => user._id == id)
     }
     
-    dispatch(setProfile(profiles[0]))
+    
     return (
         <div className="profile">
             <h1>Personal Profile</h1>

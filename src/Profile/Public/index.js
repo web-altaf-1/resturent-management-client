@@ -17,16 +17,15 @@ import "./index.css";
 function Public() {
     const { id } = useParams();
     const profiles = useSelector((state) => state.profilesReducer.profiles);
-    const profile = useSelector((state) => state.profilesReducer.profile);
-    setProfile(profiles[id])
-    const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
     const dispatch = useDispatch();
+    dispatch(setProfile(profiles[id]));
+    const profile = useSelector((state) => state.profilesReducer.profile);
+    const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
     const navigate = useNavigate();
     const friendFind = (id) => {
         return profiles.find((user) => user._id == id)
     }
     
-    dispatch(setProfile(profiles[0]))
     return (
         <div className="profile">
             <h1>Public Profile</h1>
