@@ -4,7 +4,7 @@ import db from "src/Database";
 
 const initialState = {
   profiles: db.profiles,
-  profile: { name: "New profile 123", description: "New Description" },
+  profile: { name: "New profile 123", _id: "0" },
 };
 
 

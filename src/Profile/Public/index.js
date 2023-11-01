@@ -15,10 +15,11 @@ import {
 } from "src/Comment/commentsReducer";
 import "./index.css";
 function Public() {
-    const { id } = useParams();
+    const { profileId } = useParams();
     const profiles = useSelector((state) => state.profilesReducer.profiles);
     const dispatch = useDispatch();
-    dispatch(setProfile(profiles[id]));
+    console.log(profileId);
+    dispatch(setProfile(profiles.find((profile) => profile._id == profileId)));
     const profile = useSelector((state) => state.profilesReducer.profile);
     const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
     const navigate = useNavigate();
@@ -54,9 +55,6 @@ function Public() {
                         ))}
                     </ul>
                 </div>
-                <button className="profile__edit"
-                    onClick={() => navigate(`/profile/edit`)}>
-                    Edit</button>
             </div>
         </div>
     );
