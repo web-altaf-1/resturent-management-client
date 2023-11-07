@@ -1,0 +1,10 @@
+[
+    {
+      "_id": "1",
+      "first_name": "Sam",
+      "last_name": "Tomlinson",
+      "email": "sam@gmail.com",
+      "phone_number": "3",
+      "friends": ["1"]
+    }
+]

@@ -1,0 +1,65 @@
+* {
+  font: "Roboto";
+}
+.header-background {
+  content: "";
+  background-image: url(https://s3-media0.fl.yelpcdn.com/educatorphoto/Sc48sSgQZ2wRgfLharzavg/o.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+.header-container {
+  background: linear-gradient(90deg, #0006, #0000001a 55%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.transparent-background {
+  background: linear-gradient(180deg, #000000b3, #0000004d 72.92%, #0000);
+}
+.btn-search {
+  background: #5dc380;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  max-width: 56px;
+  padding: 12px 16px;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.btn-primary {
+  background: #5dc380;
+  border: none;
+  border-radius: 4px 4px 4px 4px;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  width: 90px;
+  height: 50.4px;
+  text-align: center;
+  user-select: none;
+}
+.btn-primary:hover {
+  background: #20a0d8;
+}
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(200, 201, 202, 1);
+  border-radius: 4px 4px 4px 4px;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  width: 90px;
+  height: 50.4px;
+  padding: 12px 16px;
+  text-align: center;
+  user-select: none;
+}
+.btn-secondary:hover {
+  background: #caad7367;
+}

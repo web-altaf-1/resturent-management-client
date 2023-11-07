@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "name": "Restaurant A",
+      "cuisine": "Italian",
+      "rating": 4.5,
+      "image": "restaurantA.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Restaurant B",
+      "cuisine": "Mexican",
+      "rating": 4.2,
+      "image": "restaurantB.jpeg"
+    }
+  ]
+
