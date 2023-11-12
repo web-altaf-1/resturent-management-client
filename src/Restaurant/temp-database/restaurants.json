@@ -5,7 +5,7 @@
         "rating": "4.3",
         "categories": [
             "American", "Burgers", "Shakes"
-        ],
+        ], 
         "price": "2",
         "allergens": [
             "Peanut"

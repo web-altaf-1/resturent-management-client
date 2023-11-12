@@ -7,7 +7,7 @@ function ReviewsBox() {
             <h2>
                 Reviews
             </h2>
-            
+            <button>Write a review</button>
         </div>
     )
 }
