@@ -7,3 +7,15 @@
     display: flex;
     flex-direction: row; 
 }
+
+.image-container {
+    position: absolute;
+    background-color: #5dc380;
+    text-align: center;
+}
+
+.text-overlay {
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+}
