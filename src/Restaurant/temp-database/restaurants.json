@@ -1,16 +1,14 @@
 [
     {
-        "_id": "1",
+        "_id": 1,
         "name": "Five Guys",
-        "rating": "4.3",
-        "categories": [
-            "American", "Burgers", "Shakes"
-        ], 
-        "price": "2",
-        "allergens": [
-            "Peanut"
-        ],
-        "dietary": []
-        
+        "Lat": 43,
+        "Long": 42,
+        "Street Address": "8 A Street",
+        "City": "Boston",
+        "Zip Code": "02120",
+        "cuisines": ["American", "Burgers"],
+        "reviews": [1, 2, 3],
+        "rating": 4.2
     }
 ]
