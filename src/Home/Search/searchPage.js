@@ -1,20 +1,20 @@
 import React from "react";
 import SearchBar from "./searchBar"
 import {useDispatch, useSelector} from 'react-redux';
-import {setSearchTerm} from './searchReducer'
+import {setSearchName} from './searchReducer'
 import {useEffect} from 'react'
 
 const SearchPage = () => {
 
     const dispatch = useDispatch();
-    const searchTerm = useSelector((state) => state.search.term);
+    const searchName = useSelector((state) => state.search.name);
     const searchResults = useSelector((state) => state.search.results);
 
     useEffect(() =>{
 
-        dispatch(setSearchTerm(searchTerm));
+        dispatch(setSearchName(searchName));
 
-    }, [dispatch, searchTerm]);
+    }, [dispatch, searchName]);
 
     return(
         <div className="container">
@@ -36,9 +36,9 @@ const SearchPage = () => {
                 )}
             </div>
             <form className="container d-flex flex-column">
-                <label for="restaurant">What type of food are you looking for?</label>
+                <label htmlFor="restaurant">What type of food are you looking for?</label>
                 <input id="restaurant" type="text"></input> <br/>
-                <label for="address"> Address, City, State, or Postak Code</label>
+                <label htmlFor="address"> Address, City, State, or Postak Code</label>
                 <input id="address" type="text"></input>
                 <br/>
                 <label>Filter Options</label>

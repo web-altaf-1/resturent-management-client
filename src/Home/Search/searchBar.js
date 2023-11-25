@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import restaurants from "../../Database/restaurants.json"
 import {useDispatch, useSelector} from 'react-redux';
-import {setSearchTerm} from './searchReducer'
+import {setSearchName, setCuisineFilter, setZipCodeFilter, setCityFilter, setStreetAddressFilter} from './searchReducer'
 
 const SearchBar = () => {
   //const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  //const [searchResults, setSearchResults] = useState([]);
 
   const dispatch = useDispatch();
-  const searchTerm = useSelector((state) => state.search.term);
+  const {searchName, cuisine, zipCode, city, streetAddress} = useSelector((state) => state.search);
 
-  const handleSearchChange = (event) => {
-    dispatch(setSearchTerm(event.target.value));
+  const handleNameChange = (event) => {
+    console.log(event.target.value);
+    dispatch(setSearchName(event.target.value));
+    console.log(`New Name: ${event.target.value}`);
   };
 
-  const fetchData = (value) => {
+  const handleCuisineChange = (newCuisine) => {
+    dispatch(setCuisineFilter(newCuisine));
+  };
 
-  }
+  const handleZipCodeChange = (newZipCode) => {
+    dispatch(setZipCodeFilter(newZipCode));
+  };
+
+  const handleCityChange = (newCity) => {
+    dispatch(setCityFilter(newCity));
+  };
+
+  const handleStreetAddressChange = (newStreetAddress) => {
+    dispatch(setStreetAddressFilter(newStreetAddress));
+  };
 
   const searchStyle = {
     width: "100%",
@@ -47,10 +59,14 @@ const SearchBar = () => {
         <input
           style={searchStyle}
           type="text"
-          placeholder="Search for restaurants, businesses, etc."
-          value={searchTerm}
-          onChange={handleSearchChange}
+          placeholder="Search by Restaurant Name"
+          value={searchName}
+          onChange={handleNameChange}
         />
+      <input style={searchStyle} type="text" placeholder="Search by Cuisine" value={cuisine} onChange={(e) => handleCuisineChange(e.target.value)} />
+      <input style={searchStyle} type="text" placeholder="Search by ZIP Code" value={zipCode} onChange={(e) => handleZipCodeChange(e.target.value)} />
+      <input style={searchStyle} type="text" placeholder="Search by City" value={city} onChange={(e) => handleCityChange(e.target.value)} />
+      <input style={searchStyle} type="text" placeholder="Search by Street Address" value={streetAddress} onChange={(e) => handleStreetAddressChange(e.target.value)} />
     </div>
   );
 };
