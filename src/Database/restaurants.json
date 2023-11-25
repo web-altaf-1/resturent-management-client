@@ -12,6 +12,27 @@
       "cuisine": "Mexican",
       "rating": 4.2,
       "image": "restaurantB.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Restaurant C",
+      "cuisine": "Japanese",
+      "rating": 4.0,
+      "image": "restaurantC.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Restaurant D",
+      "cuisine": "Vegetarian",
+      "rating": 4.8,
+      "image": "restaurantD.jpeg"
+    },
+    {
+      "id": 5,
+      "name": "Restaurant E",
+      "cuisine": "Seafood",
+      "rating": 4.3,
+      "image": "restaurantE.jpeg"
     }
   ]
 

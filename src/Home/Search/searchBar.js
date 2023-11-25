@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import restaurants from "../../Database/restaurants.json"
+import {useDispatch, useSelector} from 'react-redux';
+import {setSearchTerm} from './searchReducer'
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  //const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  const dispatch = useDispatch();
+  const searchTerm = useSelector((state) => state.search.term);
 
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    dispatch(setSearchTerm(event.target.value));
   };
 
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    console.log(`Searching for: ${searchTerm}`);
-  };
+  const fetchData = (value) => {
+
+  }
 
   const searchStyle = {
     width: "100%",
@@ -37,8 +43,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div style={{width: "50%"}}>
-      <form onSubmit={handleSearchSubmit} style={searchBarForm}>
+    <div style={{width: "100%"}}>
         <input
           style={searchStyle}
           type="text"
@@ -46,8 +51,6 @@ const SearchBar = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button style={buttonStyle} type="submit">Search</button>
-      </form>
     </div>
   );
 };

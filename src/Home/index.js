@@ -1,8 +1,9 @@
 import React from "react";
-import SearchBar from "./Home_Components/searchBar";
 import RestaurantCard from "./Home_Components/restaurantCard";
 import restaurantData from "../Database/restaurants.json"
-import restaurantA from './Images/restaurantA.jpeg';
+import PostsList from "./Posts/postsList";
+import AddPostForm from "./Posts/addPostForm";
+import { Link } from "react-router-dom";
 
 function Home() {
     const homeStyle = {display: "flex", alignItems: "center", flexDirection: "column", backgroundColor: "#36454F", height: "60vh"};
@@ -12,10 +13,13 @@ function Home() {
         <>
             <div style={homeStyle}>
                 <h1>Welcome to Restaurant Dev branch Justin's Version</h1>
-                <SearchBar/>
+                <Link to="/search">
+                    <button className="btn btn-primary">Search</button>
+                </Link>
             </div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h2>Featured Restaurants</h2>
+                <AddPostForm/>
                 {restaurants.map((restaurant) => (
                     <RestaurantCard
                     key={restaurant.id}
@@ -25,6 +29,7 @@ function Home() {
                     image={restaurant.image}
                     />
                 ))}
+                <PostsList/>
             </div>
         </>
     )

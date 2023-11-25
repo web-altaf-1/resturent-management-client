@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
     const imageStyle = {
       width: '100%',
       height: '30%',
-      objectFit: 'cover', 
+      objectFit: 'cover',
     };
   
 
