@@ -25,24 +25,18 @@ const SearchPage = () => {
                 <h3>Search Results:</h3>
                 {searchResults.length === 0 ? (<p> No Results found. </p>) : 
                 (
-                    <ul>
+                    <ol>
                         {searchResults.map((result) => (
                             <li key={result.id}> 
-                                <strong>{result.name}</strong> - <strong>{result.cuisine}</strong>
-                                <br />
+                                <h3>{result.name}</h3>  
+                                <p>{result.reviews.length} reviews</p>
+                                <h5>{result.streetAddress}, {result.City}, {result.zipCode}</h5>
+                                <h5>{result.cuisine}</h5>
                             </li>
                         ))}
-                    </ul>
+                    </ol>
                 )}
             </div>
-            <form className="container d-flex flex-column">
-                <label htmlFor="restaurant">What type of food are you looking for?</label>
-                <input id="restaurant" type="text"></input> <br/>
-                <label htmlFor="address"> Address, City, State, or Postak Code</label>
-                <input id="address" type="text"></input>
-                <br/>
-                <label>Filter Options</label>
-            </form>
         </div>
     );
 };

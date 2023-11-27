@@ -56,17 +56,23 @@ const SearchBar = () => {
 
   return (
     <div style={{width: "100%"}}>
+      <label htmlFor='name'>Restaurant Name</label>
         <input
           style={searchStyle}
+          id="name"
           type="text"
           placeholder="Search by Restaurant Name"
           value={searchName}
           onChange={handleNameChange}
         />
-      <input style={searchStyle} type="text" placeholder="Search by Cuisine" value={cuisine} onChange={(e) => handleCuisineChange(e.target.value)} />
-      <input style={searchStyle} type="text" placeholder="Search by ZIP Code" value={zipCode} onChange={(e) => handleZipCodeChange(e.target.value)} />
-      <input style={searchStyle} type="text" placeholder="Search by City" value={city} onChange={(e) => handleCityChange(e.target.value)} />
-      <input style={searchStyle} type="text" placeholder="Search by Street Address" value={streetAddress} onChange={(e) => handleStreetAddressChange(e.target.value)} />
+      <label htmlFor='cuisine'>Cuisine</label>
+      <input style={searchStyle} id="cuisine" type="text" placeholder="Search by Cuisine" value={cuisine} onChange={(e) => handleCuisineChange(e.target.value)} />
+      <label htmlFor='zip'>Zip Code</label>
+      <input style={searchStyle} id="zip" type="text" placeholder="Search by ZIP Code" value={zipCode} onChange={(e) => handleZipCodeChange(e.target.value)} />
+      <label htmlFor='city'>City</label>
+      <input style={searchStyle} id="city" type="text" placeholder="Search by City" value={city} onChange={(e) => handleCityChange(e.target.value)} />
+      <label htmlFor='address'>Address</label>
+      <input style={searchStyle} id="address" type="text" placeholder="Search by Street Address" value={streetAddress} onChange={(e) => handleStreetAddressChange(e.target.value)} />
     </div>
   );
 };
