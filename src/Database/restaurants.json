@@ -8,7 +8,7 @@
     "City": "Boston",
     "zipCode": "02108",
     "cuisine": ["Italian"],
-    "reviews": [4, 5, 4.5]
+    "reviews": [4, 5, 4.5, 4.3, 4.4, 4.7, 4.8]
   },
   {
     "id": 2,
@@ -19,7 +19,7 @@
     "City": "Cambridge",
     "zipCode": "02139",
     "cuisine": ["Japanese"],
-    "reviews": [4.2, 4.8, 4.6]
+    "reviews": [4.2, 4.8, 4.6, 3.2, 3.9, 3.7]
   },
   {
     "id": 3,
@@ -217,6 +217,6 @@
     "City": "Saugus",
     "zipCode": "01906",
     "cuisine": ["Mexican"],
-    "reviews": [3.9, 3.7, 4.0]
+    "reviews": [3.9, 3.7, 4.0, 2.0, 1.0, 2.5, 2.6, 3.0]
   }
 ]

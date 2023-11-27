@@ -9,6 +9,7 @@ const searchSlice = createSlice({
         zipCode: '',
         city: '',
         streetAddress: '',
+        distance: [],
         results: []
     },
     reducers: {
@@ -32,6 +33,9 @@ const searchSlice = createSlice({
         setStreetAddressFilter: (state, action) => {
             state.streetAddress = action.payload;
             state.results = filterRestaurants(state);
+        },
+        setDistance: (state, action) => {
+            state.distance = action.payload;
         }
     },
 });
@@ -68,6 +72,7 @@ const filterRestaurants = (state) => {
     setZipCodeFilter,
     setCityFilter,
     setStreetAddressFilter,
+    setDistance
   } = searchSlice.actions;
 
   export default searchSlice.reducer;
