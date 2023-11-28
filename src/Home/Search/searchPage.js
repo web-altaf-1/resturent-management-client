@@ -81,7 +81,7 @@ const SearchPage = () => {
         }
 
 
-    }, []);
+    }, [userLocation]);
 
     const avgRating = (rating) => {
         let sum = 0;
@@ -109,7 +109,7 @@ const SearchPage = () => {
                                 <div className="d-flex">
                                 <StarRating rating={avgRating(result.reviews)}/> <p>{result.reviews.length} reviews</p>
                                 </div>
-                                <strong>{Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
+                                <strong>{searchDistance.length === 0 ? "" : Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
                                 <h5>{result.streetAddress}, {result.City}, {result.zipCode}</h5>
                                 <h5>{result.cuisine}</h5>
                             </li>
