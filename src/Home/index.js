@@ -20,15 +20,7 @@ function Home() {
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h2>Featured Restaurants</h2>
                 <AddPostForm/>
-                {restaurants.map((restaurant) => (
-                    <RestaurantCard
-                    key={restaurant.id}
-                    name={restaurant.name}
-                    cuisine={restaurant.cuisine}
-                    rating={restaurant.rating}
-                    image={restaurant.image}
-                    />
-                ))}
+              
                 <PostsList/>
             </div>
         </>
