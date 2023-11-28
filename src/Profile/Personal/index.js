@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "src/Profile/client";
+import { useState, useEffect } from "react";
 import {
     addProfile,
     deleteProfile,
@@ -15,21 +17,34 @@ import {
 } from "src/Comment/commentsReducer";
 import "./index.css";
 function Personal() {
-    const profiles = useSelector((state) => state.profilesReducer.profiles);
-    const dispatch = useDispatch();
-    dispatch(setProfile(profiles[0]));
-    const profile = useSelector((state) => state.profilesReducer.profile);
-    const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
-    const navigate = useNavigate();
-    const friendFind = (id) => {
-        return profiles.find((user) => user._id == id)
+    const [profile, setProfile] = useState(null);
+    const [friends, setFriends] = useState([]);
+    const fetchProfile = async () => {
+        const fetchedProfile = await client.account();
+        setProfile(fetchedProfile);
+        fetchFriends(fetchedProfile._id);
+        
     }
     
+    const fetchFriends = async (profileId) => {
+        const friends = await client.friends(profileId);
+        console.log(profile);
+        setFriends(friends);
+    }
     
+    const navigate = useNavigate();
+    
+    useEffect(()=>{
+        fetchProfile();
+    }, []);
+
+    //const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
+    const comments = [];
+
     return (
         <div className="profile">
             <h1>Personal Profile</h1>
-            <div className="profile-grid">
+            {profile && <div className="profile-grid">
                 <span className="profile__first-name">{profile.first_name}</span>
                 <span className="profile__last-name">{profile.last_name}</span>
                 <span className="profile__phone">{profile.email}</span>
@@ -37,10 +52,10 @@ function Personal() {
                 <div className="profile__friends">
                     <h2>Friends</h2>
                     <ul className="profile__friends__list">
-                        {profile.friends.map((friend) => (
+                        {friends.map((friend) => (
                             <li key={friend}>
                                 <Link to={`/profile/${friend}`} className="profile__friends__text">
-                                    Friend: {friendFind(friend).first_name} {friendFind(friend).last_name}
+                                    Friend: {friend.first_name} {friend.last_name}
                                 </Link>
                             </li>
                         ))}
@@ -59,7 +74,7 @@ function Personal() {
                 <button className="profile__edit"
                     onClick={() => navigate(`/profile/edit`)}>
                     Edit</button>
-            </div>
+            </div>}
         </div>
     );
 }
