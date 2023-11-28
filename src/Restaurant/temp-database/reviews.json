@@ -4,12 +4,12 @@
         "user_id": 1,
         "restaurant_id": 1,
         "content": "Their burgers are great! They also are very generous with their fries.",
-        "content-accomodations": "The fries are fried in peanut oil",
+        "content_accomodations": "The fries are fried in peanut oil",
         "accomodations": 
         {
-            "gluten-free": 0,
-            "peanut-free": -1,
-            "dairy-free": 1
+            "gluten_free": 0,
+            "peanut_free": -1,
+            "dairy_free": 1
         },
         "rating": 4.1
     },
@@ -18,12 +18,12 @@
         "user_id": 2,
         "restaurant_id": 1,
         "content": "Mid tier burger place. Not amazing.",
-        "content-accomodations": "",
+        "content_accomodations": "",
         "accomodations": 
         {
-            "gluten-free": 0,
-            "peanut-free": 0,
-            "dairy-free": 0
+            "gluten_free": 0,
+            "peanut_free": 0,
+            "dairy_free": 0
         },
         "rating": 3.0
     }
