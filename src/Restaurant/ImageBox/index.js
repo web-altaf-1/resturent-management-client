@@ -33,8 +33,7 @@ function ImageBox({ rId }) {
                     </h1>
                     <h4>
                         {displayCuisines}<br />
-                        Rating: {restaurantDb[0].rating}
-                        Rating2: {totalRating/matchingReviews.length}
+                        Rating: {(totalRating/matchingReviews.length).toFixed(1)}
                     </h4>
                 </div>
             </div>
