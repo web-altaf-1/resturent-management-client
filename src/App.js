@@ -4,6 +4,8 @@ import { HashRouter, Link, Navigate, Route, Routes } from "react-router-dom";
 import Personal from "./Profile/Personal";
 import Profile from "./Profile/Public";
 import EditProfile from "src/Profile/Edit";
+import CreateProfile from "src/Profile/Signup"
+import SignIn from "src/Profile/Signin";
 import store from "./store";
 import { Provider } from "react-redux";
 import Home from './Home';
@@ -17,6 +19,8 @@ function App() {
           <Route path="/profile" element = {<Personal />} />
           <Route path="/profile/:profileId" element = {<Profile />} />
           <Route path="/profile/edit" element = {<EditProfile />} />
+          <Route path="/signup" element = {<CreateProfile />} />
+          <Route path="/login" element = {<SignIn />} />
         </Routes>
       </div>
       </Provider>

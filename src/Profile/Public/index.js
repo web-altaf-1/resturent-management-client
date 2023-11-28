@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import * as client from "src/Profile/client";
+import { useState, useEffect } from "react";
 import {
     addProfile,
     deleteProfile,
@@ -16,30 +18,42 @@ import {
 import "./index.css";
 function Public() {
     const { profileId } = useParams();
-    const profiles = useSelector((state) => state.profilesReducer.profiles);
-    const dispatch = useDispatch();
-    console.log(profileId);
-    dispatch(setProfile(profiles.find((profile) => profile._id == profileId)));
-    const profile = useSelector((state) => state.profilesReducer.profile);
-    const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
-    const navigate = useNavigate();
-    const friendFind = (id) => {
-        return profiles.find((user) => user._id == id)
+    const [profile, setProfile] = useState(null);
+    const [friends, setFriends] = useState([]);
+    const fetchProfile = async () => {
+        const fetchedProfile = await client.findUserById(profileId);
+        setProfile(fetchedProfile);
+        fetchFriends(fetchedProfile._id);
+        
     }
     
+    const fetchFriends = async (profileId) => {
+        const friends = await client.friends(profileId);
+        setFriends(friends);
+    }
+    
+    const navigate = useNavigate();
+    
+    useEffect(()=>{
+        fetchProfile();
+    }, []);
+
+    //const comments = useSelector((state) => state.commentsReducer.comments).filter((comment) => comment.user_id == profile._id);;
+    const comments = [];
+
     return (
         <div className="profile">
             <h1>Public Profile</h1>
-            <div className="profile-grid">
+            {profile && <div className="profile-grid">
                 <span className="profile__first-name">{profile.first_name}</span>
                 <span className="profile__last-name">{profile.last_name}</span>
                 <div className="profile__friends">
                     <h2>Friends</h2>
                     <ul className="profile__friends__list">
-                        {profile.friends.map((friend) => (
+                        {friends.map((friend) => (
                             <li key={friend}>
                                 <Link to={`/profile/${friend}`} className="profile__friends__text">
-                                    Friend: {friendFind(friend).first_name} {friendFind(friend).last_name}
+                                    Friend: {friend.first_name} {friend.last_name}
                                 </Link>
                             </li>
                         ))}
@@ -55,7 +69,7 @@ function Public() {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 }
