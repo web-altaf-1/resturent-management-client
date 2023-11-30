@@ -48,7 +48,7 @@ function Personal() {
                 <span className="profile__first-name">{profile.first_name}</span>
                 <span className="profile__last-name">{profile.last_name}</span>
                 <span className="profile__phone">{profile.email}</span>
-                <span className="profile__email">{profile.phone_number}</span>
+                <span className="profile__email">{profile.phone}</span>
                 <div className="profile__friends">
                     <h2>Friends</h2>
                     <ul className="profile__friends__list">
