@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setSearchName, setDistance} from './searchReducer'
 import {useEffect} from 'react'
 import StarRating from "./starRating"
+import ApiImport from "./ApiImport";
 import "./styling/search.css";
 
 const SearchPage = () => {
@@ -100,7 +101,7 @@ const SearchPage = () => {
             <SearchBar/>
             <div>
                 <h3>Search Results:</h3>
-                {searchResults.length === 0 ? (<p> No Results found. </p>) : 
+                {searchResults.length === 0 ? (<ApiImport />) : 
                 (
                     <ol>
                         {searchResults.map((result) => (
