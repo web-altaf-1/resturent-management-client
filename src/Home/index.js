@@ -1,6 +1,16 @@
+import React from "react";
+import PostsList from "./Posts/postsList";
+import AddPostForm from "./Posts/addPostForm";
+
 function Home() {
     return (
-        <h1>Welcome to Restaurant</h1>
+        <>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h2>Featured Restaurants</h2>
+                <AddPostForm />
+                <PostsList />
+            </div>
+        </>
     )
 }
 
