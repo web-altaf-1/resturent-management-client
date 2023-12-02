@@ -11,17 +11,10 @@ function Home() {
 
     return (
         <>
-            <div style={homeStyle}>
-                <h1>Welcome to Restaurant Dev branch Justin's Version</h1>
-                <Link to="/search">
-                    <button className="btn btn-primary">Search</button>
-                </Link>
-            </div>
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h2>Featured Restaurants</h2>
-                <AddPostForm/>
-              
-                <PostsList/>
+                <AddPostForm />
+                <PostsList />
             </div>
         </>
     )
