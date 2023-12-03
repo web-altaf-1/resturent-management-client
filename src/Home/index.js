@@ -1,8 +1,8 @@
 import React from "react";
 import RestaurantCard from "./Home_Components/restaurantCard";
 import restaurantData from "../Database/restaurants.json"
-import PostsList from "./Posts/postsList";
-import AddPostForm from "./Posts/addPostForm";
+//import PostsList from "./Posts/postsList";
+//import AddPostForm from "./Posts/addPostForm";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -19,9 +19,7 @@ function Home() {
             </div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h2>Featured Restaurants</h2>
-                <AddPostForm/>
-              
-                <PostsList/>
+        
             </div>
         </>
     )

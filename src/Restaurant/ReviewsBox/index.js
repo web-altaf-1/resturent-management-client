@@ -1,5 +1,7 @@
 // Use reviews to get dietary information
 import db from "./../temp-database"
+import React from "react";
+import { Link } from "react-router-dom";
 
 // Will need to match restaurants and reviews by ID
 function ReviewsBox({ rId }) {
@@ -11,7 +13,11 @@ function ReviewsBox({ rId }) {
             <h2>
                 Reviews
             </h2>
-            <button>Write a review</button>
+
+            <Link to={`/restaurant/${rId}/review`}>
+                <button>Write a review</button>
+            </Link>
+
             <hr/>
             {matchingReviews.map(review => (
                 <div>

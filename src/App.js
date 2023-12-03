@@ -9,7 +9,9 @@ import SignIn from "src/Profile/Signin";
 import store from "./store";
 import { Provider } from "react-redux";
 import Home from './Home';
-import Restaurant from './Restaurant';
+import Restaurant from './Restaurant'
+import ReviewsPage from './Posts';
+
 function App() {
   return (
     <HashRouter>
@@ -24,6 +26,7 @@ function App() {
           <Route path="/restaurant/:rId" element = {<Restaurant />} />
           <Route path="/signup" element = {<CreateProfile />} />
           <Route path="/login" element = {<SignIn />} />
+          <Route path="/restaurant/:rId/review" element= {<ReviewsPage/>} />
         </Routes>
       </div>
       </Provider>
