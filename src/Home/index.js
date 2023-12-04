@@ -11,9 +11,14 @@ function Home() {
 
     return (
         <>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={homeStyle}>
+                <Link to="/search">
+                    <button className="btn btn-primary">Search</button>
+                </Link>
+            </div>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h2>Featured Restaurants</h2>
-
+        
             </div>
         </>
     )
