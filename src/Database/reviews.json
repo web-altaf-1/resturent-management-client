@@ -130,7 +130,7 @@
         "content": "Authentic Mexican flavors! The guacamole is a must-try.",
         "content_accomodations": "",
         "accomodations": {
-          "gluten_free": 0,
+          "gluten_free": 3,
           "nut_free": 0,
           "dairy_free": 0,
           "shellfish": 0,

@@ -6,6 +6,7 @@ import { postAdd } from './postsSlice';
 import { selectAllUsers } from '../Home/Users/usersSlice';
 import {useNavigate} from 'react-router-dom';
 import './styling/posts.css'
+import PostStars from "./postStars"
 
 import db from "src/Database";
 
@@ -18,12 +19,30 @@ const AddPostForm = ({restaurantId}) => {
     const [restaurant, setRestaurant] = useState('');
     const [content, setContent] = useState('');
     const [userId, setUserId] = useState('');
+    const [rating, setRating] = useState(0);
+    const [selectedAllergy, setSelectedAllergy] = useState('');
+    const [allergyRating, setAllergyRating] = useState(0);
+    const [allergyRatings, setAllergyRatings] = useState({
+        "gluten_free": 0,
+        "nut_free": 0,
+        "dairy_free": 0,
+        "shellfish": 0,
+        "vegetarian": 0,
+        "vegan": 0
+    });
 
+    const [selectedAllergies, setSelectedAllergies] = useState([]);
+    const [showAllergyRating, setShowAllergyRating] = useState(false);
+
+    const allergies = ['gluten-Free', 'nut-Free', 'dairy-Free', 'shellfish', 'vegetarian', 'vegan'];
+    
     const users = useSelector(selectAllUsers);
 
     const onRestaurantChanged = e => setRestaurant(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
     const onAuthorChanged = e => setUserId(e.target.value)
+    const onRatingChanged = (newRating) => setRating(newRating);
+    
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,9 +51,6 @@ const AddPostForm = ({restaurantId}) => {
 
     useEffect(() => {
         // Find the restaurant based on restaurantId and set its name
-        console.log("Restaurant IDDD: ", restaurantId)
-        console.log("Restaurants here: ", {restaurants});
-        console.log("restaurant 1", restaurants[0].id);
         const selectedRestaurant = restaurants.find((r) => r.id == restaurantId);
         console.log("Selected Restaurant ", selectedRestaurant);
         if (selectedRestaurant) {
@@ -42,33 +58,28 @@ const AddPostForm = ({restaurantId}) => {
         }
       }, [restaurantId, restaurants]);
 
-    const onPostReview = () => {
-        if (restaurant && content){
-            dispatch(
-                postAdd({
-                    id: nanoid(),
-                    restaurant_id: restaurantId,
-                    content: content,
-                    user_id: userId,
-                    content_accomodations: '',
-                    accommodations: {
-                        gluten_free: 0,
-                        nut_free: 0,
-                        dairy_free: 0,
-                        shellfish: 0,
-                        vegetarian: 0,
-                        vegan: 0,
-                      },
-                      rating: 0.0
-                })
-            )
+      const onPostReview = () => {
+        if (restaurant && content) {
+          const reviewData = {
+            id: nanoid(),
+            restaurant_id: restaurantId,
+            content: content,
+            user_id: userId,
+            content_accomodations: '',
+            accomodations: allergyRatings,
+            rating: rating,
+          };
 
-            setRestaurant('')
-            setContent('')
+          dispatch(postAdd(reviewData));
+    
+          setRestaurant('');
+          setContent('');
+          setSelectedAllergy('');
+          setAllergyRating(0);
         }
-
-        navigate(`/restaurant/${restaurantId}`)
-    }
+    
+        navigate(`/restaurant/${restaurantId}`);
+      };
 
     const canPost = Boolean(restaurant) && Boolean(content) && Boolean(userId)
 
@@ -78,9 +89,27 @@ const AddPostForm = ({restaurantId}) => {
         </option> 
     ))
 
+    const allergyOptions = allergies.map((allergy) => (
+        <option key={allergy} value={allergy}>
+          {allergy}
+        </option>
+      ));
+
+      const onAllergyChanged = (allergy) => {
+        // When the allergy dropdown changes, dynamically set the allergy rating
+        setSelectedAllergy(allergy);
+        setAllergyRatings((prevRatings) => ({
+          ...prevRatings,
+          [allergy.toLowerCase().replace('-', '_')]: 0, // Initial rating set to 0
+        }));
+        setShowAllergyRating(true);
+      };
+
+      console.log("Selected Allergies:", selectedAllergies);
+      console.log("Allergy Ratings:", allergyRatings);
+
   return (
     <div>
-        <h2>Add new Review</h2>
         <form className="postForm">
             <label htmlFor='postRestaurant'>Restaurant:</label>
             <input
@@ -102,6 +131,40 @@ const AddPostForm = ({restaurantId}) => {
                 value={content}
                 onChange={onContentChanged}
                 />
+             <label htmlFor="rating">Rating:</label>
+             <PostStars value={rating} onClick={setRating} />
+             <label htmlFor="allergyDropdown">Choose Allergy:</label>
+             <select id="allergyDropdown" value={selectedAllergy} onChange={(e) => onAllergyChanged(e.target.value)}>
+          <option value=""></option>
+          {allergyOptions}
+        </select>
+        <button
+            className="btn btn-primary"
+            type="button"
+            disabled={selectedAllergies.includes(selectedAllergy)}
+            onClick={() => {
+                setShowAllergyRating(true);
+                setSelectedAllergies((prevSelectedAllergies) => [
+                ...prevSelectedAllergies,
+                selectedAllergy,
+                ]);           
+            }}>
+            Add Allergy Rating
+        </button>
+        {selectedAllergies.map((allergy) => (
+            <div key={allergy}>
+                <label>Rate {allergy}:</label>
+                <PostStars
+                value={allergyRatings[allergy.toLowerCase().replace('-', '_')]}
+                onClick={(rating) =>
+                    setAllergyRatings((prevRatings) => ({
+                    ...prevRatings,
+                    [allergy.toLowerCase().replace('-', '_')]: rating,
+                    }))
+                }
+                />
+            </div>
+            ))}
             <button className="btn btn-primary postButton" type="button"
             onClick={onPostReview} disabled={!canPost}>Post Review</button>
         </form>

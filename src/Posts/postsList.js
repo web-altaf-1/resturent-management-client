@@ -4,6 +4,7 @@ import { selectAllPosts } from './postsSlice'
 import PostAuthor from './postAuthor'
 import Time from './Time'
 import './styling/posts.css'
+import PostStars from './postStars'
 
 const PostsList = ({restaurantId}) => {
 
@@ -20,9 +21,33 @@ const PostsList = ({restaurantId}) => {
 
     console.log("Restaurant posts:", {restaurantPosts})
 
+
+    const hasAccommodations = (accommodations) => {
+      console.log("Accommodations:", accommodations);
+      const sumOfRatings = Object.values(accommodations).reduce((acc, rating) => acc + rating, 0);
+      return sumOfRatings !== 0;
+    };
+
     const renderedPosts = restaurantPosts.map(post => (
         <div className="restaurantCard" key={post.id}>
+            {console.log("Post", {post})}
             <h3>{post.restaurant}</h3>
+            <h3>Overall Rating</h3>
+            <PostStars value={post.rating} onClick={() => {}} />
+            {console.log(`Post Allergies: ${post.accomodations}`)}
+            {hasAccommodations(post.accomodations) && (
+            <div>
+              <h3>Accommodations</h3>
+                {Object.entries(post.accomodations).map(([allergy, rating]) => (
+                rating !== 0 && (
+                <div key={allergy}>
+                  <p>{allergy} Rating:</p>
+                  <PostStars value={rating} />
+                </div>
+              )
+              ))}
+            </div>
+          )}
             <p>{post.content.substring(0, 100)}</p>
             <p><PostAuthor userId={post.user_id} />
             <Time timestamp={post.date}/>
