@@ -13,12 +13,7 @@ function Home() {
         <>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h2>Featured Restaurants</h2>
-<<<<<<< HEAD
-                <AddPostForm />
-                <PostsList />
-=======
-        
->>>>>>> dev-js
+
             </div>
         </>
     )
