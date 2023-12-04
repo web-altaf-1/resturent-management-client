@@ -42,7 +42,7 @@ const PostsList = ({restaurantId}) => {
                 rating !== 0 && (
                 <div key={allergy}>
                   <p>{allergy} Rating:</p>
-                  <PostStars value={rating} />
+                  <PostStars value={rating} onClick={() => {}}/>
                 </div>
               )
               ))}
