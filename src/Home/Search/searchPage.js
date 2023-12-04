@@ -1,4 +1,5 @@
 import {React, useState} from "react";
+import {Link} from 'react-router-dom';
 import SearchBar from "./searchBar"
 import {useDispatch, useSelector} from 'react-redux';
 import {setSearchName, setDistance} from './searchReducer'
@@ -93,7 +94,6 @@ const SearchPage = () => {
     }
 
 
-
     return(
         <div className="container">
             <h1> Search </h1>
@@ -104,16 +104,19 @@ const SearchPage = () => {
                 {searchResults.length === 0 ? (<ApiImport />) : 
                 (
                     <ol>
+                    
                         {searchResults.map((result) => (
-                            <li key={result.id} className="restaurantList"> 
-                                <h3 style={{color: "blue"}}>{result.name}</h3>  
-                                <div className="d-flex">
-                                <StarRating rating={avgRating(result.reviews)}/> <p>{result.reviews.length} reviews</p>
-                                </div>
-                                <strong>{searchDistance.length === 0 ? "" : Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
-                                <h5>{result.streetAddress}, {result.City}, {result.zipCode}</h5>
-                                <h5>{result.cuisine}</h5>
-                            </li>
+                            <Link key={result.id} to={`/restaurant/${result.id}`}>
+                                <li key={result.id} className="restaurantList"> 
+                                    <h3 style={{color: "blue"}}>{result.name}</h3>  
+                                    <div className="d-flex">
+                                    <StarRating rating={avgRating(result.reviews)}/> <p>{result.reviews.length} reviews</p>
+                                    </div>
+                                    <strong>{searchDistance.length === 0 ? "" : Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
+                                    <h5>{result.streetAddress}, {result.City}, {result.zipCode}</h5>
+                                    <h5>{result.cuisine}</h5>
+                                </li>
+                            </Link>
                         ))}
                     </ol>
                 )}

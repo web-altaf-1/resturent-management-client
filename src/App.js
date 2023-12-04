@@ -9,6 +9,7 @@ import Login from "src/Login";
 import store from "./store";
 import * as client from "src/store/api";
 import { Provider } from "react-redux";
+<<<<<<< HEAD
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Register from "src/Register";
@@ -18,6 +19,12 @@ import { useEffect, useState } from "react";
 import Restaurant from "./Restaurant";
 // import SignIn from "src/Profile/Signin";
 // import CreateProfile from "src/Profile/Signup";
+=======
+import Home from './Home';
+import Restaurant from './Restaurant'
+import ReviewsPage from './Posts';
+
+>>>>>>> dev-js
 function App() {
   const [validUser, setValidUser] = useState(false);
   const cookie = Cookies.get("user");
@@ -41,12 +48,22 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/search" element={<SearchPage />} />
+<<<<<<< HEAD
           <Route path="/profile" element={<Personal />} />
           <Route path="/profile/:profileId" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restaurant/:rId" element={<Restaurant />} />
+=======
+          <Route path="/profile" element = {<Personal />} />
+          <Route path="/profile/:profileId" element = {<Profile />} />
+          <Route path="/profile/edit" element = {<EditProfile />} />
+          <Route path="/restaurant/:rId" element = {<Restaurant />} />
+          <Route path="/signup" element = {<CreateProfile />} />
+          <Route path="/login" element = {<SignIn />} />
+          <Route path="/restaurant/:rId/review" element= {<ReviewsPage/>} />
+>>>>>>> dev-js
         </Routes>
       </Provider>
     </BrowserRouter>
