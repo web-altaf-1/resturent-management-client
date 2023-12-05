@@ -20,16 +20,17 @@ function Signup() {
   const register = async (e) => {
     e.preventDefault();
     try {
-      await client.register(fromData);
+      console.log("formmmmmmm",  fromData)
+     await client.register(fromData);
       setSuccessMsg('Successfully signed up')
       setTimeout(() => {
         navigate("/login");
       }, 3000);
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err?.response?.data?.message);
     }
   };
-
+  
   return (
     <div className="auth-container">
       <h1>Register</h1>

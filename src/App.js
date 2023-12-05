@@ -26,10 +26,13 @@ function App() {
   const [validUser, setValidUser] = useState(false);
   const cookie = Cookies.get("user");
 
+  console.log("cookieeeeeeeee", cookie)
+
   const checkValidToken = () => {
     const response = client.checkToken(cookie);
     if (response) {
       setValidUser(true);
+
     }
   };
   useEffect(() => {
@@ -42,15 +45,15 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <Navbar validUser={validUser} />
-        <Routes>
           <Route path="/" exact element={<Home />} />
+        <Routes>
           <Route path="/search" element={<SearchPage />} />
           <Route path="/profile" element = {<Personal />} />
           <Route path="/profile/:profileId" element = {<Profile />} />
           <Route path="/profile/edit" element = {<EditProfile />} />
           <Route path="/restaurant/:rId" element = {<Restaurant />} />
-          <Route path="/signup" element = {<Signup />} />
-          <Route path="/login" element = {<SignIn />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           <Route path="/restaurant/:rId/review" element= {<ReviewsPage/>} />
         </Routes>
       </Provider>

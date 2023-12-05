@@ -8,25 +8,37 @@ function Login() {
   const [fromData, setFormData] = useState({
     email: "",
     password: "",
-    type: "USER", // Default value
   });
 
-  const LogIn = async (e) => {
+   const LogIn = async (e) => {
     e.preventDefault();
     try {
       const response = await client.login(fromData);
-      if (response) {
-        setSuccessMsg('Successfully logged in');
-        Cookies.set('user', response?.data);
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 3000);
+      if (response && response.data) {
+        const { token, user } = response;
+        
+        // Check if user is defined before destructuring its properties
+        if (user) {
+          const { _id, email, type } = user;
+          setSuccessMsg("Successfully logged in");
+          Cookies.set("user", response.data);
+          Cookies.set("userType", type);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 3000);
+        } else {
+          setError("User information not available");
+        }
+      } else {
+        setError("Invalid response format");
       }
     } catch (err) {
-      setError(err.response.data.message);
+      console.log(err);
+      setError(err?.response ? err?.response?.data?.message : "Internal Server Error");
     }
   };
-
+  
+  
   return (
     <div className="auth-container">
       <h1>Log in</h1>
@@ -40,7 +52,9 @@ function Login() {
             required
             type="email"
             value={fromData.email}
-            onChange={(e) => setFormData({ ...fromData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...fromData, email: e.target.value })
+            }
           />
         </div>
 
@@ -50,7 +64,9 @@ function Login() {
             required
             type="password"
             value={fromData.password}
-            onChange={(e) => setFormData({ ...fromData, password: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...fromData, password: e.target.value })
+            }
           />
         </div>
 
@@ -62,6 +78,7 @@ function Login() {
           >
             <option value="USER">User</option>
             <option value="RESTAURANT">Restaurant</option>
+            <option value="ADMIN">Admin</option>\
           </select>
         </div>
 

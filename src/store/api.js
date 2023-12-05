@@ -14,10 +14,11 @@ export const login = async (credentials) => {
   const response = await request.post(`${USERS_API}/signin`, credentials);
   return response?.data;
 };
+
 export const checkToken = async (token) => {
   try {
     const response = await request.post(`${USERS_API}/check-token`, token);
-    return response?.data;
+    return response.data;
   } catch (error) {
     console.log(error);
     return null;
@@ -82,7 +83,7 @@ export const register = async (user) => {
 };
 export const logout = async () => {
   const response = await request.post(`${USERS_API}/signout`);
-  return response?.data;
+  return response;
 };
 export const friends = async (id) => {
   try {
