@@ -13,15 +13,20 @@ import Navbar from "./Navbar";
 import Register from 'src/Register';
 import Cookies from "js-cookie";
 import { useEffect, useState } from 'react';
+import UserTable from './Users/table';
 
 function App() {
   const [validUser, setValidUser] = useState(false);
+
   const cookie = Cookies.get('user');
+
+  console.log("cookieeeeeeeee", cookie)
 
   const checkValidToken = () => {
     const response = client.checkToken(cookie);
     if(response){
       setValidUser(true);
+
     }
   }
   useEffect(() => {
@@ -33,15 +38,18 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-          <Navbar validUser={validUser}/>
+          <Navbar validUser={validUser} />
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/profile" element={<Personal />} />
+            <Route path="/admin" element={<UserTable />} />
             <Route path="/profile/:profileId" element={<Profile />} />
             <Route path="/profile/edit" element={<EditProfile />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+
+            
           </Routes>
       </Provider>
     </BrowserRouter>
