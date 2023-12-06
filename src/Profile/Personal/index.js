@@ -1,6 +1,6 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as client from "src/Profile/client";
+// import * as client from "src/Profile/client";
 import * as client from "src/store/api";
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";

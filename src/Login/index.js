@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import * as client from "src/store/api";
+import * as client from "../../src/store/api";
+
 import Cookies from "js-cookie";
 
 function Login() {
@@ -10,18 +11,20 @@ function Login() {
     password: "",
   });
 
-   const LogIn = async (e) => {
-    e.preventDefault();
+  const LogIn = async (e) => {
+
     try {
+      e.preventDefault();
       const response = await client.login(fromData);
-      if (response && response.data) {
+      console.log({ response });
+      if (response) {
         const { token, user } = response;
-        
+        console.log({ user });
         // Check if user is defined before destructuring its properties
         if (user) {
           const { _id, email, type } = user;
           setSuccessMsg("Successfully logged in");
-          Cookies.set("user", response.data);
+          Cookies.set("user", response.token);
           Cookies.set("userType", type);
           setTimeout(() => {
             window.location.href = "/";
@@ -37,8 +40,8 @@ function Login() {
       setError(err?.response ? err?.response?.data?.message : "Internal Server Error");
     }
   };
-  
-  
+
+
   return (
     <div className="auth-container">
       <h1>Log in</h1>

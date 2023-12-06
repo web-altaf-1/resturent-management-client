@@ -128,8 +128,8 @@ function Navbar({ validUser }) {
                 <img
                   src="logo.jpeg"
                   alt="logo"
-                  height={"150px"}
-                  width={"150px"}
+                  height={"100px"}
+                  width={"100px"}
                 />
               </div>
             </Link>

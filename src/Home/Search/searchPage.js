@@ -14,7 +14,6 @@ const SearchPage = () => {
     const searchName = useSelector((state) => state.search.name);
     const searchResults = useSelector((state) => state.search.results);
     const searchDistance = useSelector((state) => state.search.distance);
-    console.log("Distance:", searchDistance);
 
     const [userLocation, setUserLocation] = useState(null);
     const [restaurantDistance, setRestaurantDistance] = useState([]);
@@ -73,13 +72,12 @@ const SearchPage = () => {
 
     useEffect(() => {
 
-        if(userLocation && searchResults.length > 0){
-            const updateResults = searchResults.map((restaurant) => {
-                const distance = calculateDistance(userLocation.lat, userLocation.long, restaurant.Lat, restaurant.Long);
+        if(userLocation && searchResults?.length > 0){
+            const updateResults = searchResults?.map((restaurant) => {
+                const distance = calculateDistance(userLocation?.lat, userLocation?.long, restaurant?.Lat, restaurant?.Long);
                 return {distance};
             });
             dispatch(setDistance(updateResults));
-            console.log( 'Distance:', updateResults);
         }
 
 
@@ -101,18 +99,18 @@ const SearchPage = () => {
             <SearchBar/>
             <div>
                 <h3>Search Results:</h3>
-                {searchResults.length === 0 ? (<ApiImport />) : 
+                {searchResults?.length === 0 ? (<ApiImport />) : 
                 (
                     <ol>
                     
-                        {searchResults.map((result) => (
+                        {searchResults?.map((result) => (
                             <Link key={result.id} to={`/restaurant/${result.id}`}>
                                 <li key={result.id} className="restaurantList"> 
                                     <h3 style={{color: "blue"}}>{result.name}</h3>  
                                     <div className="d-flex">
-                                    <StarRating rating={avgRating(result.reviews)}/> <p>{result.reviews.length} reviews</p>
+                                    <StarRating rating={avgRating(result.reviews)}/> <p>{result?.reviews?.length} reviews</p>
                                     </div>
-                                    <strong>{searchDistance.length === 0 ? "" : Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
+                                    <strong>{searchDistance?.length === 0 ? "" : Math.round(searchDistance[result.id -1].distance * 10)/10 + " mi away"} </strong>
                                     <h5>{result.streetAddress}, {result.City}, {result.zipCode}</h5>
                                     <h5>{result.cuisine}</h5>
                                 </li>
